@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ComputerASP.Models.Supplier>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>Поставщики</h2>
+
+    <p>
+        <a href="@Url.Action("Create", "Suppliers")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>Создать</a>
+    </p>
+    @using (Html.BeginForm("Index", "Suppliers", FormMethod.Get))
+    {
+        <p>
+            Поиск по городу:@Html.TextBox("SearchString", null, new { @class = "form-control" })
+            Фирма: @Html.DropDownList("clientRet", null, "Всё", new { @class = "form-control" })
+        </p>
+        <input type="submit" value="Фильтр" class="btn btn-outline-primary" />
+        <a href="@Url.Action("Index", "Suppliers")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+    }
+<table class="table">
+    <tr>
+        <th>
+            Найименование фирмы
+        </th>
+        <th>
+            Дата поставки
+        </th>
+        <th>
+            Город
+        </th>
+        <th>
+            Адрес
+        </th>
+        <th>
+            Номер телефона
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <h2 align="center">Данные не найдены</h2>
+        <h3 align="center">Введите коректные данные</h3>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr style="background-color:#333; color:#CBCBCB;">
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.SupplierFirm)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.DateDelivery)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.CityDelivery)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.AddressDelivery)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.PhoneDelivery)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Suppliers", new { id = item.SupplierId })" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+                    <a href="@Url.Action("Details", "Suppliers", new { id = item.SupplierId })" class="btn btn-info"><i class="glyphicon glyphicon-list-alt"></i>Детали</a> |
+                    <a href="@Url.Action("Delete", "Suppliers", new { id = item.SupplierId })" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Удалить</a> |
+                </td>
+            </tr>
+        }
+    }
+    </table>
+    @section scripts{
+        <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        }
+        )
+        </script>
+    }

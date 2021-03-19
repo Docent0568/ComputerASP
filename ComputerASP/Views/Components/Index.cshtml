@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ComputerASP.Models.Component>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Компоненты</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Components")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>Создать</a>
+</p>
+@using (Html.BeginForm("Index", "Components", FormMethod.Get))
+{
+    <p>
+        Поиск :@Html.TextBox("SearchString", null, new { @class = "clbt" })
+    </p>
+    <input type="submit" value="Фильтр" class="btn btn-outline-primary" />
+    <a href="@Url.Action("Index", "Components")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+}
+<table class="table">
+    <tr>
+        <th>
+            Найименование компонента
+        </th>
+
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <h2 align="center">Данные не найдены</h2>
+        <h3 align="center">Введите коректные данные</h3>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr style="background-color:#333; color:#CBCBCB;">
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.ComponentName)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Edit", "Components", new { id = item.ComponentId })" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+                    <a href="@Url.Action("Details", "Components", new { id = item.ComponentId })" class="btn btn-info"><i class="glyphicon glyphicon-list-alt"></i>Детали</a> |
+                    <a href="@Url.Action("Delete", "Components", new { id = item.ComponentId })" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Удалить</a> |
+                </td>
+            </tr>
+        }
+    }
+    </table>
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        }
+        )
+    </script>
+}

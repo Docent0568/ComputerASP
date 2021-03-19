@@ -1,0 +1,38 @@
+﻿@model ComputerASP.Models.Model
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить это?</h3>
+<div>
+    <h4>Компоненты</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Component.ComponentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.Component.ComponentName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Удалить" class="btn btn-danger" /> |
+    <a href="@Url.Action("Index", "Modelss")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</div>
+    }
+</div>

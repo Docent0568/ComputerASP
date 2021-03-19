@@ -1,0 +1,72 @@
+﻿@model ComputerASP.Models.ProfitBill
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить это?</h3>
+<div>
+    <h4>Приходная накладная</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseComponentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchasePCComponent.Model.ModelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.SupplierFirm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SumPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SumPrice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Удалить" class="btn btn-danger" /> |
+    <a href="@Url.Action("Index", "ProfitBills")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</div>
+    }
+</div>

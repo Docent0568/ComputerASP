@@ -1,0 +1,58 @@
+﻿@model ComputerASP.Models.Supplier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Поставщик</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierFirm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierFirm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneDelivery)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "Suppliers", new { id=Model.SupplierId})" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+    <a href="@Url.Action("Index", "Suppliers")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</p>

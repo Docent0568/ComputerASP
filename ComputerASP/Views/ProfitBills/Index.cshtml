@@ -1,0 +1,103 @@
+﻿@model  PagedList.PagedList<ComputerASP.Models.ProfitBill>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Приходная накладная</h2>
+
+<p>
+    <a href="@Url.Action("Create", "ProfitBills")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>Создать</a>
+</p>
+@using (Html.BeginForm("Index", "ProfitBills", FormMethod.Get))
+{
+    <p>
+        Поиск по поставщику:@Html.TextBox("SearchString", null, new { @class = "clbt" })
+
+    </p>
+    <input type="submit" value="Фильтр" class="btn btn-outline-primary" />
+    <a href="@Url.Action("Index", "ProfitBills")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+}
+<table class="table">
+    <tr style="background-color:#333; color:#CBCBCB;">
+        <th style="width:60px">
+            Комплектующее
+        </th>
+        <th style="width:60px">
+            Модель
+        </th>
+        <th style="width:120px">
+            Поставщик
+        </th>
+        <th style="width:60px">
+            Цена за единицу
+        </th>
+        <th style="width:60px">
+            Количество
+        </th>
+        <th style="width:60px">
+            Дата покупки
+        </th>
+        <th style="width:60px">
+            Сумма
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <h2 align="center">Данные не найдены</h2>
+        <h3 align="center">Введите коректные данные</h3>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr style="background-color:#333; color:#CBCBCB;">
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.PurchasePCComponent.Component.ComponentName)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.PurchasePCComponent.Model.ModelName)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Supplier.SupplierFirm)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.SumPrice)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "ProfitBills", new { id = item.PurchaseId })" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a>
+                    <a href="@Url.Action("Details", "ProfitBills", new { id = item.PurchaseId })" class="btn btn-info"><i class="glyphicon glyphicon-list-alt"></i>Детали</a>
+                    <a href="@Url.Action("Delete", "ProfitBills", new { id = item.PurchaseId })" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Удалить</a>
+                </td>
+            </tr>
+        }
+    }
+    </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, currentFilter = ViewBag.CurrentFilter }))
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        }
+        )
+    </script>
+}

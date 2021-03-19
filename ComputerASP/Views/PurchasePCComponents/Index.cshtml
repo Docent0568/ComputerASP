@@ -1,0 +1,120 @@
+﻿@model  PagedList.PagedList<ComputerASP.Models.PurchasePCComponent>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Покупка Комплектующих</h2>
+
+<p>
+    <a href="@Url.Action("Create", "PurchasePCComponents")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>Создать</a>
+</p>
+
+@using (Html.BeginForm("Index", "PurchasePCComponents", FormMethod.Get))
+{
+    <p>
+        Поиск по моделе,или характеристике:@Html.TextBox("SearchString", null, new { @class = "clbt" })
+        Компоненты:
+        @Html.DropDownList("client", null, "Всё", new { @class = "clbt" })
+        Наличие:
+        @Html.DropDownList("clientRet", new List<SelectListItem>(){
+                    new SelectListItem { Value = "False", Text = "Нету" },
+                    new SelectListItem { Value = "True", Text = "Есть" }
+   },
+        "Всё", new { @class = "clbt" })
+    </p>
+    <input type="submit" value="Фильтр" class="btn btn-outline-primary" />
+    <a href="@Url.Action("Index", "PurchasePCComponents")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+}
+<table class="table">
+    <tr style="background-color:#333; color:#CBCBCB;">
+        <th style="width:60px">
+            Наименование компонента
+        </th>
+        <th style="width:60px">
+            Наименовании моделей
+        </th>
+        <th style="width:120px">
+            Фирма
+        </th>
+        <th style="width:30px">
+            Наличие
+        </th>
+        <th style="width:140px">
+            Характеристика компонента
+        </th>
+        <th style="width:60px">
+            Цена
+        </th>
+        <th style="width:60px">
+            Дата выпуска
+        </th>
+        <th style="width:60px">
+            Guarantee_Period
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <h2 align="center">Данные не найдены</h2>
+        <h3 align="center">Введите коректные данные</h3>
+    }
+    else
+    {
+
+        foreach (var item in Model)
+        {
+            <tr style="background-color:#333; color:#CBCBCB;">
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Component.ComponentName)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Model.ModelName)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Supplier.SupplierFirm)
+                </td>
+                <td style="height:70px;">
+                    @Html.DisplayFor(modelItem => item.Availabity)
+                </td>
+
+
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Specifications)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.DateIssue)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.GuaranteePeriod)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "PurchasePCComponents", new { id = item.PurchaseComponentId })" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a>
+                    <a href="@Url.Action("Details", "PurchasePCComponents", new { id = item.PurchaseComponentId })" class="btn btn-info"><i class="glyphicon glyphicon-list-alt"></i>Детали</a>
+                    <a href="@Url.Action("Delete", "PurchasePCComponents", new { id = item.PurchaseComponentId })" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Удалить</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        }
+        )
+    </script>
+}

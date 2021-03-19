@@ -1,0 +1,58 @@
+﻿@model ComputerASP.Models.PCSale
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Продажа ПК</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PCName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PCName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PricePC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuaranteePeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuaranteePeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PCStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PCStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "PCSales", new { id = Model.PCSaleId })" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+    <a href="@Url.Action("Index", "PCSales")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</p>

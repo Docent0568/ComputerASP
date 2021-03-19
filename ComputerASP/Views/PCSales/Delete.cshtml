@@ -1,0 +1,65 @@
+﻿@model ComputerASP.Models.PCSale
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить это?</h3>
+<div>
+    <h4>Сборка ПК</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PCName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PCName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PricePC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PricePC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GuaranteePeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuaranteePeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PCStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PCStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Удалить" class="btn btn-danger" /> |
+    <a href="@Url.Action("Index", "PCSales")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</div>
+    }
+</div>

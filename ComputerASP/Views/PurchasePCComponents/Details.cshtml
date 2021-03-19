@@ -1,0 +1,82 @@
+﻿@model ComputerASP.Models.PurchasePCComponent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Покупка комплектующих</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComponentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Component.ComponentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model.ModelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.SupplierFirm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Availabity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Availabity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specifications)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specifications)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateIssue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateIssue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GuaranteePeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GuaranteePeriod)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "PurchasePCComponents", new {id = Model.PurchaseComponentId})" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+    <a href="@Url.Action("Index", "PurchasePCComponents")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</p>

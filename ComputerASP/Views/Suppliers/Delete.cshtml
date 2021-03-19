@@ -1,0 +1,64 @@
+﻿@model ComputerASP.Models.Supplier
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить это?</h3>
+<div>
+    <h4>Поставщик</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SupplierFirm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupplierFirm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CityDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddressDelivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneDelivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneDelivery)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Удалить" class="btn btn-danger" /> |
+    <a href="@Url.Action("Index", "Suppliers")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</div>
+    }
+</div>

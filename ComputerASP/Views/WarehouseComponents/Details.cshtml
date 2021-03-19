@@ -1,0 +1,42 @@
+﻿@model ComputerASP.Models.WarehouseComponent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Склад</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "WarehouseComponents", new {id = Model.WarehouseComponentId})" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+    <a href="@Url.Action("Index", "WarehouseComponents")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</p>

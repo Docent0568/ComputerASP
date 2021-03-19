@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ComputerASP.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Сотрудники</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Employees")" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>Создать</a>
+</p>
+@using (Html.BeginForm("Index", "Employees", FormMethod.Get))
+{
+    <p>
+        Поиск по городу:@Html.TextBox("SearchString", null, new { @class = "clbt" })
+        ФИО: @Html.DropDownList("clientRet", null, "Всё", new { @class = "clbt" })
+    </p>
+    <input type="submit" value="Фильтр" class="btn btn-outline-primary" />
+    <a href="@Url.Action("Index", "Employees")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+}
+<table class="table">
+    <tr>
+        <th>
+            ФИО
+        </th>
+        <th>
+            Город
+        </th>
+        <th>
+            Адрес сотрудника
+        </th>
+        <th>
+            Телефон
+        </th>
+        <th>
+            Должность
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <h2 align="center">Данные не найдены</h2>
+        <h3 align="center">Введите коректные данные</h3>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <tr style="background-color:#333; color:#CBCBCB;">
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.FIO)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td style="height:70px">
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Employees", new { id = item.EmployeeId })" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+                    <a href="@Url.Action("Details", "Employees", new { id = item.EmployeeId })" class="btn btn-info"><i class="glyphicon glyphicon-list-alt"></i>Детали</a> |
+                    <a href="@Url.Action("Delete", "Employees", new { id = item.EmployeeId })" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>Удалить</a> |
+                </td>
+            </tr>
+        }
+    }
+    </table>
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        }
+        )
+    </script>
+}

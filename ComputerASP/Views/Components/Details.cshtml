@@ -1,0 +1,26 @@
+﻿@model ComputerASP.Models.Component
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Компоненты</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComponentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComponentName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "Components", new { id=Model.ComponentId})" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+    <a href="@Url.Action("Index", "Components")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</p>

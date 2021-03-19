@@ -1,0 +1,66 @@
+﻿@model ComputerASP.Models.RetailInvoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Розничная накладная</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WarehouseComponentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WarehouseComponentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaleDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaleDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SumPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SumPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "RetailInvoices", new { id = Model.SaleId})" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>Редактировать</a> |
+    <a href="@Url.Action("Index", "RetailInvoices")" class="btn btn-primary"><i class="glyphicon glyphicon-circle-arrow-left"></i>Вернуться назад</a>
+</p>
