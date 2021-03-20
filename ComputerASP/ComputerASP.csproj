@@ -164,10 +164,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SaleComputer_DB.mdf" />
-    <Content Include="App_Data\SaleComputer_DB_log.ldf">
-      <DependentUpon>SaleComputer_DB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\alertifyjs\alertify.css" />
     <Content Include="Content\alertifyjs\alertify.min.css" />
     <Content Include="Content\alertifyjs\alertify.rtl.css" />
@@ -194,10 +190,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\PC.jpg" />
-    <Content Include="SaleComputer_DB.mdf" />
-    <Content Include="SaleComputer_DB_log.ldf">
-      <DependentUpon>SaleComputer_DB.mdf</DependentUpon>
-    </Content>
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
